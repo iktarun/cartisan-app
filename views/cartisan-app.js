@@ -1,31 +1,31 @@
 
-function plantDirectionMap(destLat, destLng)
-      {
-        var directionsService = new google.maps.DirectionsService;
-        var directionsDisplay = new google.maps.DirectionsRenderer;
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 7,
-          center: {lat: 28.448311699999998, lng: 77.04873540000001}
-        });
-        directionsDisplay.setMap(map);
+function plantDirectionMap(destLat, destLng, srcLat, srcLng)
+{
+  var directionsService = new google.maps.DirectionsService;
+  var directionsDisplay = new google.maps.DirectionsRenderer;
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 7,
+    center: {lat: srcLat, lng: srcLng}
+  });
+  directionsDisplay.setMap(map);
 
-        calculateAndDisplayRoute(directionsService, directionsDisplay,destLat, destLng);
-      }
+  calculateAndDisplayRoute(directionsService, directionsDisplay,destLat, destLng,srcLat, srcLng);
+}
 
-      function calculateAndDisplayRoute(directionsService, directionsDisplay,destLat, destLng) {
-          directionsService.route({
-            origin: {lat: 28.448311699999998, lng: 77.04873540000001},
-            destination: {lat: destLat, lng:  destLng},
-            travelMode: 'DRIVING',
-            unitSystem: google.maps.UnitSystem.IMPERIAL
-          }, function(response, status) {
-            if (status === 'OK') {
-              directionsDisplay.setDirections(response);
-            } else {
-              window.alert('Directions request failed due to ' + status);
-            }
-          });
+function calculateAndDisplayRoute(directionsService, directionsDisplay,destLat, destLng,srcLat, srcLng) {
+    directionsService.route({
+      origin: {lat: srcLat, lng: srcLng},
+      destination: {lat: destLat, lng:  destLng},
+      travelMode: 'DRIVING',
+      unitSystem: google.maps.UnitSystem.IMPERIAL
+    }, function(response, status) {
+      if (status === 'OK') {
+        directionsDisplay.setDirections(response);
+      } else {
+        window.alert('Directions request failed due to ' + status);
       }
+    });
+}
 
 
 var app = angular.module("cartisanApp", ['ngRoute','ngStorage','ngMaterial']);
@@ -53,17 +53,6 @@ app.controller("HomeCtrl", ['$scope','$location','$http','$localStorage','$timeo
   $scope.fuelPriceData  = [];
   $scope.RATE_API_URL = "http://localhost:3000/api/get-fuel-price";
 
-  // // Get the user current location
-  // if (navigator.geolocation) {
-  //   navigator.geolocation.getCurrentPosition(function(position){
-  //     $scope.$apply(function(){
-  //       $scope.city = position;
-  //       $scope.getFuelPrice();
-  //     });
-  //   });
-  // }
-
-
   // @function getFuelPrice: If user city is found then we will fetch the fuel rates from api's
   $scope.getFuelPrice = function(){
     
@@ -84,7 +73,7 @@ app.controller("HomeCtrl", ['$scope','$location','$http','$localStorage','$timeo
             }
           }, function myError(response) {
               console.log("Error in User search data");
-          });
+      });
     }
   }
 
@@ -127,7 +116,6 @@ app.controller("HomeCtrl", ['$scope','$location','$http','$localStorage','$timeo
 
         if (results[0]) {
           //formatted address
-          alert(results[0].formatted_address)
           //find country name
             for (var i=0; i<results[0].address_components.length; i++) {
               for (var b=0;b<results[0].address_components[i].types.length;b++) {
@@ -139,8 +127,7 @@ app.controller("HomeCtrl", ['$scope','$location','$http','$localStorage','$timeo
                 }
               }
             }
-        //city data
-        alert(city.short_name + " " + city.long_name);
+
         $localStorage.city  = city.short_name;
         $scope.city         = city.short_name;  
         $scope.$digest();
@@ -194,6 +181,7 @@ app.controller("HomeCtrl", ['$scope','$location','$http','$localStorage','$timeo
   }
 
   function createMarker(place) {
+
     var placeLoc = place.geometry.location;
     var destLat  = place.geometry.location.lat();
     var destLng  = place.geometry.location.lng();
@@ -209,10 +197,10 @@ app.controller("HomeCtrl", ['$scope','$location','$http','$localStorage','$timeo
           <strong>' + place.name + '</strong><br>' +
             'Place ID: ' + place.place_id + '<br>' +
             'Ratting: ' + place.rating + '<br>' +
-            '<button type="button" onclick="plantDirectionMap('+destLat+','+destLng+');">Go</button>' +
+            '<button type="button" onclick="plantDirectionMap('+destLat+','+destLng+','+$localStorage.lat+','+$localStorage.lng+');">Direction</button>' +
             '</div>');
 
-      infowindow.open(map, this);
+        infowindow.open(map, this);
     });
   }
 
