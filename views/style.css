@@ -1,0 +1,91 @@
+.banner-image {
+  background-image: url("cropped-medical-wallpaper.jpg");
+  height: 47vw;
+  box-shadow: 5px 20px 50px grey;
+}
+
+.banner-text {
+  font-size: 32px;
+  font-weight: bolder;
+}
+
+.form-field {
+  height: 50px;
+  width: 80%;
+  display: block;
+  margin-top: 6%;
+  padding: 10px;
+}
+
+.form-container {
+  padding-top: 7%;
+}
+
+.search-bar {
+  margin: 1% 0 0 20%;
+}
+
+.search-bar-text {
+  width:60%;
+  padding: 5px;
+}
+
+.search-history-container {
+  width: 92%;
+    min-width: 52%;
+    border: 1px solid grey;
+    margin: 1% 4%;
+}
+
+.search-history-label {
+  margin: 1% 0 0 3%;
+}
+
+.homepage-header {
+  height: 75px;
+  background-color: #404040;
+  color: #fff;
+  font-weight: bolder;
+  margin-bottom: 10px;
+}
+
+.homepage-logo {
+  float: left;
+  font-size: 32px;
+  margin: 2% 0 0 3%;
+}
+
+.homepage-user {
+  float: right;
+  margin: 2% 4% 0 0;
+}
+
+.signup-button{
+  font-size: 16px;
+  margin-top: 16px;
+}
+
+.signup-success-message{
+  color: green;
+  font-size: 16px;
+  font-weight: bolder;
+  margin-top: 16px;
+}
+
+.user-search-history{
+  margin-top: 10px;
+}
+
+/**/
+.margin-left50{
+  margin-left: 50px;
+}
+
+.user-search-box {
+  width:50%;
+  margin-left:25%
+}
+
+.data-save-success {
+  width: 20%;
+}

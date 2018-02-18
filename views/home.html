@@ -1,0 +1,31 @@
+<!-- Logout Section -->
+<div ng-controller="HomeCtrl">
+  <div class="homepage-header">
+      <div class="homepage-logo">Cartisan App: Showing Fuel data for {{position}}</div>
+      <div class="homepage-user">
+        <label id="admin-uname" style="margin-right:30px">Welcome</label>
+
+      </div>
+  </div>
+  <!-- User search section -->
+  <div class="user-search-history">
+    <div class="search-history-container">
+      <table class="table table-striped">
+        <thead>
+          <th>Fuel Type</th>
+          <th>Price</th>
+        </thead>
+        <tbody class=" ">
+          <tr ng-repeat="x in fuelPriceData">
+            <td>{{ x.type }}</td>
+            <td>{{ x.price}}</td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="map" style="width:100%;height:500px"></div>
+
+</div>

@@ -1,0 +1,26 @@
+{
+  "name": "cartisan-app",
+  "version": "1.0.0",
+  "description": "Cartisan app for petrol/diesel tracking",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tarunkumar2215/cartisan-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tarunkumar2215/cartisan-app/issues"
+  },
+  "homepage": "https://github.com/tarunkumar2215/cartisan-app#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "cors": "^2.8.4",
+    "express": "^4.14.1",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2"
+  }
+}
