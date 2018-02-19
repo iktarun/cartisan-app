@@ -6,14 +6,13 @@ var rp = require('request-promise');
 
 module.exports.getFuelPrice = function(req,res){
 
-    if (req && req.body && req.body.city && req.body.fuel_type) {
+    if (req && req.body && req.body.city) {
 
       var city       = req.body.city;
-      var fuel_type   = req.body.fuel_type;
       var FUEL_PRICE_API_URL = config.FUEL_PRICE_API_URL;
 
-      var petrolPriceUrl  = FUEL_PRICE_API_URL.replace(/CITYNAME/g, city).replace(/FUELTYPE/g, 'petrol');
-      var dieselPriceUrl  = FUEL_PRICE_API_URL.replace(/CITYNAME/g, city).replace(/FUELTYPE/g, 'diesel');
+      var petrolPriceUrl  = FUEL_PRICE_API_URL.replace(/CITYNAME/g, city).replace(/FUELTYPE/g, config.FUEL_PRTROL);
+      var dieselPriceUrl  = FUEL_PRICE_API_URL.replace(/CITYNAME/g, city).replace(/FUELTYPE/g, config.FUEL_DIESEL);
       var resultArr       = [];
       console.log(petrolPriceUrl);
       console.log(dieselPriceUrl);
@@ -21,9 +20,9 @@ module.exports.getFuelPrice = function(req,res){
       rp(petrolPriceUrl)
         .then(response => {
           // add stuff from url1 response to url2
-          var fuelObj = {};
-          var response = JSON.parse(response);
-          fuelObj.type  = 'petrol';
+          var fuelObj   = {};
+          var response  = JSON.parse(response);
+          fuelObj.type  = config.FUEL_PRTROL;
           console.log(response.petrol);
           console.log(typeof(response));
           
@@ -35,9 +34,9 @@ module.exports.getFuelPrice = function(req,res){
         .then(response => {
           // add stuff from url2 response to url3
           console.log(response);
-          var response = JSON.parse(response);
-          var fuelObj = {};
-          fuelObj.type  = 'diesel';
+          var response  = JSON.parse(response);
+          var fuelObj   = {};
+          fuelObj.type  = config.FUEL_DIESEL;
           
           console.log(response.diesel);
           fuelObj.price = response.diesel;

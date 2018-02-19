@@ -1,4 +1,4 @@
-.banner-image {
+./*banner-image {
   background-image: url("cropped-medical-wallpaper.jpg");
   height: 47vw;
   box-shadow: 5px 20px 50px grey;
@@ -7,7 +7,7 @@
 .banner-text {
   font-size: 32px;
   font-weight: bolder;
-}
+}*/
 
 .form-field {
   height: 50px;
@@ -43,7 +43,7 @@
 
 .homepage-header {
   height: 75px;
-  background-color: #404040;
+  background-color: #428bca;
   color: #fff;
   font-weight: bolder;
   margin-bottom: 10px;
@@ -74,6 +74,7 @@
 
 .user-search-history{
   margin-top: 10px;
+  /*margin-left: 20%;*/
 }
 
 /**/
@@ -88,4 +89,52 @@
 
 .data-save-success {
   width: 20%;
+}
+
+
+body {
+    font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+    height: 100%;
+    width: 408px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+    margin-top: 75px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    background: #fff;
+    opacity: 1;
+}
+
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.main {
+    margin-left: 20%; /* Same as the width of the sidenav */
+    font-size: 28px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+
+#map{
+  width:100%;height:500px;
+    margin-top: 75px;
 }

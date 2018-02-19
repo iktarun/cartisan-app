@@ -14,7 +14,8 @@ var config 			= require('./config'); // get our config file
 
 /* Include all the controllers that are used in this application */ 
 
-var fuelPriceController 	= require('./controllers/get-fuel-price-controller');
+var fuelPriceController 		= require('./controllers/get-fuel-price-controller');
+var placeDetailsController 	= require('./controllers/place-details-controller');
 
 var assetsPath 				= path.join('../css');
 app.use(express.static(assetsPath));
@@ -55,5 +56,6 @@ app.get('*', function(req, res){
 */
 
 app.post('/api/get-fuel-price',fuelPriceController.getFuelPrice);
+app.post('/api/get-place-details',placeDetailsController.getPlaceDetails);
 
 app.listen(config.port);//Listen on server port 3000
