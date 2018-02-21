@@ -29,6 +29,12 @@ app.controller("HomeCtrl", ['$scope','$location','$http','$localStorage','$timeo
   $scope.state = true;
   $scope.place_details = "";
 
+  // Place details data
+  $scope.place_details_img  = "";
+  $scope.place_name         = "";
+  $scope.place_tot_ratting  = "";
+  $scope.place_formatted_address = "";
+
   $scope.toggle = function () {
     $scope.state = !$scope.state;
   };
@@ -112,13 +118,18 @@ app.controller("HomeCtrl", ['$scope','$location','$http','$localStorage','$timeo
                           'longitude:'+lng+'<br/>'+
                           'Reviews:'+reviewsHtml;
 
+        $scope.place_details_img  = body.result.icon;
+        $scope.place_name         = body.result.name;
+        $scope.place_tot_ratting  = body.result.rating;
+        $scope.place_formatted_address = body.result.formatted_address;
+
         //document.getElementById('sidenav').innerHTML(sideNavBarHtml);
-        $scope.place_details = sideNavBarHtml;
+        // $scope.place_details = sideNavBarHtml;
     }
   }
 
-  // @function getFuelPrice: If user city is found then we will fetch the fuel rates from api's
-  $scope.getPlaceDetails = function(){
+  // @function getPlaceDetails: Get the place details from the API
+  function getPlaceDetails(){
     
     if($scope.place_id){
       $http({
@@ -130,18 +141,12 @@ app.controller("HomeCtrl", ['$scope','$location','$http','$localStorage','$timeo
             console.log(response);
             if(response.data.status == true){
               processPlaceDetailsData(response.data.data);
-              // if(response.data.data){
-
-              // }else{
-              //   console.log("No data available for user");
-              // }
             }
           }, function myError(response) {
               console.log("Error in User search data");
       });
     }
   }
-
   $scope.getPlaceDetails();
 
 
@@ -165,8 +170,9 @@ app.controller("HomeCtrl", ['$scope','$location','$http','$localStorage','$timeo
       codeLatLng(lat, lng);
   }
 
-  function errorFunction(){
-    alert("Geocoder failed");
+  function errorFunction(error){
+    alert('Geocoder failed ERROR(' + error.code + '): ' + error.message);
+    //Need to make call 
   }
 
   function initialize() {
@@ -181,6 +187,7 @@ app.controller("HomeCtrl", ['$scope','$location','$http','$localStorage','$timeo
     geocoder.geocode({'latLng': latlng}, function(results, status) {
       
       if (status == google.maps.GeocoderStatus.OK) {
+        console.log(results[0]);
 
         if (results[0]) {
           //formatted address
@@ -264,7 +271,7 @@ app.controller("HomeCtrl", ['$scope','$location','$http','$localStorage','$timeo
           <strong>' + place.name + '</strong><br>' +
             'Place ID: ' + place.place_id + '<br>' +
             'Ratting: ' + place.rating + '<br>' +
-            '<button type="button" onclick="plantDirectionMap('+destLat+','+destLng+','+$localStorage.lat+','+$localStorage.lng+');">Direction</button>' +
+            '<button type="button" style="color:#4285F4;font-weight: bold;padding: 10px;border-radius: 10px;float: right;" onclick="plantDirectionMap('+destLat+','+destLng+','+$localStorage.lat+','+$localStorage.lng+');">Direction <i class="fas fa-arrow-right"></i></button>' +
             '</div>');
 
         infowindow.open(map, this);

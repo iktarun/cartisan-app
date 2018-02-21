@@ -52,7 +52,7 @@
 .homepage-logo {
   float: left;
   font-size: 32px;
-  margin: 2% 0 0 3%;
+  margin: 1% 0 0 3%;
 }
 
 .homepage-user {
@@ -96,7 +96,7 @@ body {
     font-family: "Lato", sans-serif;
 }
 
-.sidenav {
+/*.sidenav {
     height: 100%;
     width: 408px;
     position: fixed;
@@ -121,7 +121,7 @@ body {
 
 .sidenav a:hover {
     color: #f1f1f1;
-}
+}*/
 
 .main {
     margin-left: 20%; /* Same as the width of the sidenav */
@@ -135,6 +135,166 @@ body {
 }
 
 #map{
-  width:100%;height:500px;
-    margin-top: 75px;
+  width:100%;height:880px;
+  margin-top: -10px;
 }
+
+/*  .sidenav {
+        height: 100%;
+        width: 408px;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        padding-top: 20px;
+        margin-top: 75px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        background: #fff;
+        opacity: 1;
+    }
+
+    #pl-img{
+              position: relative;
+        top: -15px;
+        left: 0px;
+        width: 408px;
+        height: 230px;
+    }
+
+    #pl-header-details{
+      padding: 16px 24px 20px;
+      display: block;
+      background-color: #4285F4;
+      font-size: 13px;
+      text-align: left;
+      color: white;
+    }
+
+    .section-hero-header-title {
+      font-size: 18px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .pl-header-row{
+      font-family: Roboto, 'Noto Sans Devanagari UI', 'Noto Sans Bengali UI', 'Noto Sans Telugu UI', 'Noto Sans Tamil UI', 'Noto Sans Gujarati UI', 'Noto Sans Kannada UI', 'Noto Sans Malayalam UI', 'Noto Sans Gurmukhi UI', Arial, sans-serif;
+    }
+
+    .section-reviewchart {
+    padding: 0 0 20px 72px;
+    max-width: 408px;
+    box-sizing: border-box;
+    -webkit-flex: none;
+    -ms-flex: none;
+    flex: none;
+      border: 2px solid grey;
+      margin-top: 30px;
+      height: 300px;
+  }
+  .section-reviewchart-left {
+    display: inline-table;
+  }
+
+  .section-reviewchart-right {
+    padding: 0;
+    display: inline-table;
+    text-align: center;
+    width: 150px;
+    margin-left: 13px;
+    vertical-align: top;
+  }*/
+
+
+    .sidenav {
+        height: 100%;
+        width: 408px;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        padding-top: 20px;
+        margin-top: 75px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        background: #fff;
+        opacity: 1;
+    }
+
+    #pl-img{
+        position: relative;
+        top: -15px;
+        left: 0px;
+        width: 408px;
+        height: 230px;
+    }
+
+    #pl-header-details{
+      padding: 16px 24px 20px;
+      display: block;
+      background-color: #4285F4;
+      font-size: 13px;
+      text-align: left;
+      color: white;
+    }
+
+    .section-hero-header-title {
+      font-size: 18px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .pl-header-row{
+      font-family: Roboto, 'Noto Sans Devanagari UI', 'Noto Sans Bengali UI', 'Noto Sans Telugu UI', 'Noto Sans Tamil UI', 'Noto Sans Gujarati UI', 'Noto Sans Kannada UI', 'Noto Sans Malayalam UI', 'Noto Sans Gurmukhi UI', Arial, sans-serif;
+      padding: 0 20px 0px 20px;
+    }
+
+    .section-reviewchart {
+      padding: 0 0 20px 0px;
+      max-width: 408px;
+      box-sizing: border-box;
+      -webkit-flex: none;
+      -ms-flex: none;
+      flex: none;
+  }
+  .section-reviewchart-left {
+    display: inline-table;
+  }
+
+  .section-reviewchart-right {
+    padding: 0;
+    display: inline-table;
+    text-align: center;
+    width: 150px;
+    margin-left: 13px;
+    vertical-align: top;
+  }
+  .img-review{
+    height: 36px;
+    width: 36px;
+    background-size: cover;
+    background-image: url(//maps.gstatic.com/tactile/omnibox/anonymous_v3.png);
+    background-position: center;
+    border-radius: 50%;
+  }
+  .section-review-snippet-line {
+    padding-left: 20px;
+    line-height: 19px;
+    min-height: 40px;
+  }
+
+  .section-reviewchart-bucket-fill {
+    background-color: #EB6E00 !important;
+    border-radius: 0 3px 3px 0;
+    padding: 1px 1px 1px 0;
+    height: 17px;
+    width: 0;
+  }
+  .review-summary{
+        padding: 0 20px 0 20px;
+  }
+
+
+

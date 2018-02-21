@@ -27,7 +27,3 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay,destLat, 
       }
     });
 }
-
-function getPlaceFullDetails(place_id){
-
-}
