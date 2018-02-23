@@ -1,0 +1,60 @@
+/**		 ********** ******************* *****
+
+******************************************
+******* INSTRUCTIONS TO INSTALL APPLICATION
+
+*******************************************
+** 		*********** ******************* **/
+
+#Download URL: https://github.com/tarunkumar2215/cartisan-app.git	
+
+	****************
+	Step1: Check OS, node and npm versions, I have made this app in the below version  
+	Please install these below packages to run the application in your machine
+
+	> node --version
+		v6.11.2
+
+	> npm --version
+		3.10.10
+
+	> nodemon -v
+		1.11.0
+
+	> LINUX OS: ubuntu
+	
+	***********************
+
+	Step2: Download zip file and Setup the code
+
+		1. Donwload the code from below link
+
+				https://github.com/tarunkumar2215/cartisan-app.git
+
+
+								OR
+
+				Download code Drive folder, zip file
+
+		2. locate your code in /var/www/html/ folder
+
+		3. Now cd /var/www/html/cartisan-app 
+
+		4. > npm install
+
+			This above command will install all your dependencies
+
+			if there is some issue I will provide you the node_modules folder
+
+
+	***********************
+
+	Step4: After Successfull Installation node moduels, Start your server
+		
+			> nodemon index.js OR node index.js
+
+	Step5: Go to your browser and paste this url
+
+				http://localhost:3000
+
+				Now enjoy the App :) 
