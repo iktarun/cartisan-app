@@ -84,7 +84,7 @@ app.controller("HomeCtrl", ['$scope','$location','$http','$localStorage','$timeo
         case 'banglore':
         case 'bangluru':
         case 'bangl':
-          return 'Banglore';
+          return 'Bangalore';
           break;
         case 'gurgaon':
         case 'gurg':
@@ -158,6 +158,13 @@ app.controller("HomeCtrl", ['$scope','$location','$http','$localStorage','$timeo
     geocoder = new google.maps.Geocoder();
   }
 
+  function startRendering(city){
+    $scope.city         = getCityNameFromBucket(city);  
+    $scope.$digest();
+    $scope.getFuelPrice();
+    $scope.initMap();
+  }
+
   function codeLatLng(lat, lng) {
 
     var latlng = new google.maps.LatLng(lat, lng);
@@ -179,12 +186,9 @@ app.controller("HomeCtrl", ['$scope','$location','$http','$localStorage','$timeo
                 }
               }
             }
-
-        $localStorage.city  = city.short_name;
-        $scope.city         = getCityNameFromBucket(city.short_name);  
-        $scope.$digest();
-        $scope.getFuelPrice();
-        $scope.initMap();
+          city.short_name = 'Banglore Urban';
+          // $localStorage.city  = city.short_name;
+          startRendering(city.short_name);
         } else {
           alert("No results found");
         }
