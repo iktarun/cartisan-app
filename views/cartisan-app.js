@@ -186,9 +186,9 @@ app.controller("HomeCtrl", ['$scope','$location','$http','$localStorage','$timeo
                 }
               }
             }
-          city.short_name = 'Banglore Urban';
-          // $localStorage.city  = city.short_name;
-          startRendering(city.short_name);
+            city.short_name     = city.short_name;;
+            $localStorage.city  = city.short_name;
+            startRendering(city.short_name);
         } else {
           alert("No results found");
         }
@@ -221,7 +221,7 @@ app.controller("HomeCtrl", ['$scope','$location','$http','$localStorage','$timeo
     var service = new google.maps.places.PlacesService(map);
     service.nearbySearch({
       location: pyrmont,
-      radius: 1000,
+      radius: 3000,
       type: ['gas_station']
     }, callback);
   }
