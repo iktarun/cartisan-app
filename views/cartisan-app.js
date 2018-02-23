@@ -14,7 +14,7 @@ app.config(function($routeProvider) {
 /************************** Home Controller **************************
 */
 
-app.controller("HomeCtrl", ['$scope','$location','$http','$localStorage','$timeout', '$q', '$log','$window', function ($scope,$location,$http,$localStorage,$timeout,$q,$log,$window) {
+app.controller("HomeCtrl", ['$scope','$location','$http','$localStorage','$timeout', '$q', '$log','$window','$compile', function ($scope,$location,$http,$localStorage,$timeout,$q,$log,$window,$compile) {
   
   //Variable declations
   $scope.city = "";
@@ -25,18 +25,18 @@ app.controller("HomeCtrl", ['$scope','$location','$http','$localStorage','$timeo
   $scope.fuelPriceData  = [];
   $scope.RATE_API_URL   = "http://localhost:3000/api/get-fuel-price";
   $scope.PLACE_DETAILS_API_URL = "http://localhost:3000/api/get-place-details";
-  $scope.place_id = "ChIJIW7F5loYDTkRdR1sO6V7bzE";
-  $scope.state = true;
-  $scope.place_details = "";
 
   // Place details data
   $scope.place_details_img  = "";
   $scope.place_name         = "";
   $scope.place_tot_ratting  = "";
   $scope.place_formatted_address = "";
+  $scope.place_id       = "";
+  $scope.nav_state      = false;
+  $scope.place_details  = "";
 
   $scope.toggle = function () {
-    $scope.state = !$scope.state;
+    $scope.nav_state = !$scope.state;
   };
 
   // @function getFuelPrice: If user city is found then we will fetch the fuel rates from api's
@@ -49,20 +49,18 @@ app.controller("HomeCtrl", ['$scope','$location','$http','$localStorage','$timeo
            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
            data: 'city='+$scope.city
        }).then(function mySuccess(response) {
-            console.log(response);
+      
             if(response.data.status == true){
               if(response.data.data){
-                //$scope.fuelPriceData  = response.data.data;
                 var data = response.data.data;
+
                 for(row in data){
                   if(data[row].type == 'petrol'){
                     $scope.petrolPrice = data[row].price;
-                    
                   }else if(data[row].type == 'diesel'){
                     $scope.dieselPrice = data[row].price;
                   }
                 }
-
 
               }else{
                 console.log("No data available for user");
@@ -74,62 +72,43 @@ app.controller("HomeCtrl", ['$scope','$location','$http','$localStorage','$timeo
     }
   }
 
+  //Get the exact city name from city bucket
+  function getCityNameFromBucket(cityStr){
+    var cityArr = cityStr.split(' ');
+    
+    for(var i=0; i< cityArr.length; i++){
+      
+      var str = cityArr[i].toLowerCase();
+      
+      switch(str){
+        case 'banglore':
+        case 'bangluru':
+        case 'bangl':
+          return 'Banglore';
+          break;
+        case 'gurgaon':
+        case 'gurg':
+          return 'Gurgaon';
+      } 
+    }
+   return '';
+  }
+
   function processPlaceDetailsData(body){ 
 
     body = JSON.parse(body);
-
-    if(body.status && body.status.toLowerCase() == 'ok'){
-
-        var lat = '';
-        var lng = '';
-
-        if(body.result.geometry){
-           var geo = body.result.geometry;
-          for (x in geo) {
-            if(x == 'location'){
-              lat = geo[x].lat;
-              lng = geo[x].lng; 
-            }
-          }
-        }
-
-        var reviewsHtml = ""; 
-        var reviews     = body.result.reviews;
-        
-        for(data in reviews){
-          console.log(reviews[data]);
-          reviewsHtml += "Author:"+reviews[data].author_name;
-          reviewsHtml += "author_url:"+reviews[data].author_url;
-          reviewsHtml += "profile_photo_url:"+reviews[data].profile_photo_url;
-          reviewsHtml += "rating:"+reviews[data].rating;
-          reviewsHtml += "relative_time_description:"+reviews[data].relative_time_description;
-          reviewsHtml += "text:"+reviews[data].text;
-          reviewsHtml += "time:"+reviews[data].time;
-          reviewsHtml += '<br/><hr>';
-        }
-
-        var sideNavBarHtml = 'Name:'+body.result.name+'<br/>'+
-                          'formatted_address:'+body.result.formatted_address+'<br/>'+
-                          'latitude:'+body.result.icon+'<br/>'+
-                          'latitude:'+body.result.rating+'<br/>'+
-                          'latitude:'+body.result.place_id+'<br/>'+
-                          'latitude:'+body.result.formatted_address+'<br/>'+
-                          'latitude:'+lat+'<br/>'+
-                          'longitude:'+lng+'<br/>'+
-                          'Reviews:'+reviewsHtml;
-
-        $scope.place_details_img  = body.result.icon;
-        $scope.place_name         = body.result.name;
-        $scope.place_tot_ratting  = body.result.rating;
-        $scope.place_formatted_address = body.result.formatted_address;
-
-        //document.getElementById('sidenav').innerHTML(sideNavBarHtml);
-        // $scope.place_details = sideNavBarHtml;
+    
+    if(body.status && body.status.toLowerCase() == 'ok'){        
+          $scope.place_details_img  = body.result.icon;
+          $scope.place_name         = body.result.name;
+          $scope.place_tot_ratting  = body.result.rating;
+          $scope.place_formatted_address = body.result.formatted_address;
+          $scope.reviews = body.result.reviews;
     }
   }
 
   // @function getPlaceDetails: Get the place details from the API
-  function getPlaceDetails(){
+  var getPlaceDetails = function(){
     
     if($scope.place_id){
       $http({
@@ -138,7 +117,6 @@ app.controller("HomeCtrl", ['$scope','$location','$http','$localStorage','$timeo
            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
            data: 'place_id='+$scope.place_id
        }).then(function mySuccess(response) {
-            console.log(response);
             if(response.data.status == true){
               processPlaceDetailsData(response.data.data);
             }
@@ -146,8 +124,8 @@ app.controller("HomeCtrl", ['$scope','$location','$http','$localStorage','$timeo
               console.log("Error in User search data");
       });
     }
-  }
-  $scope.getPlaceDetails();
+  };
+  $window.getPlaceDetails = getPlaceDetails;
 
 
   /** 
@@ -187,7 +165,6 @@ app.controller("HomeCtrl", ['$scope','$location','$http','$localStorage','$timeo
     geocoder.geocode({'latLng': latlng}, function(results, status) {
       
       if (status == google.maps.GeocoderStatus.OK) {
-        console.log(results[0]);
 
         if (results[0]) {
           //formatted address
@@ -204,12 +181,10 @@ app.controller("HomeCtrl", ['$scope','$location','$http','$localStorage','$timeo
             }
 
         $localStorage.city  = city.short_name;
-        $scope.city         = city.short_name;  
+        $scope.city         = getCityNameFromBucket(city.short_name);  
         $scope.$digest();
         $scope.getFuelPrice();
         $scope.initMap();
-
-
         } else {
           alert("No results found");
         }
@@ -266,7 +241,7 @@ app.controller("HomeCtrl", ['$scope','$location','$http','$localStorage','$timeo
     });
 
     google.maps.event.addListener(marker, 'click', function() {
-
+      $scope.place_id = place.place_id;
        infowindow.setContent('<div><img src="'+place.icon+'" />\
           <strong>' + place.name + '</strong><br>' +
             'Place ID: ' + place.place_id + '<br>' +

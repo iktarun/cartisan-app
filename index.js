@@ -3,6 +3,9 @@
  * Desc: Applicaton Root File
  */
 
+// https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJIW7F5loYDTkRdR1sO6V7bzE&key=AIzaSyDKPfHzj3bzyKiVHKx5eFt-a-UKdnVLAlY
+
+// https://fuelpriceindia.herokuapp.com/price?city=Banglore&fuel_type=petrol
 
 /* PROJECT DEPENDENCY CONFIG FILES INCLUDED HERE*/
 

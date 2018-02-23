@@ -1,4 +1,4 @@
-<!-- Logout Section -->
+<!-- homepage Section -->
 <div ng-controller="HomeCtrl">
   <div class="homepage-header">
       <div class="homepage-logo">{{city}}
@@ -10,63 +10,9 @@
 
       </div>
   </div>
-  <!-- User search section -->
- <!--  <div class="user-search-history">
-    <div class="search-history-container">
-      <table class="table table-striped">
-        <thead>
-          <th>Fuel Type</th>
-          <th>Price</th>
-        </thead>
-        <tbody class=" ">
-          <tr ng-repeat="x in fuelPriceData">
-            <td>{{ x.type }}</td>
-            <td>{{ x.price}}</td>
-
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div> -->
- <!--  <div class="sidenav" id="sidenav">
-    
-    <div id="place-details-div">{{place_details_img}}</div>
-    <div id="place-details-div">{{place_name}}</div>
-    <div id="place-details-div">{{place_tot_ratting}}</div>
-    <div id="place-details-div">{{place_formatted_address}}</div>
-    <div id="place-review-summary"></div>
-    <div id="place-comments"></div>
-    <div></div>
-    <div></div>
-    
-
-      
-</div> -->
-
-<!-- <div class="sidenav" id="sidenav">
-    
-    <div id="pl-img">
-      <img src="https://lh5.googleusercontent.com/p/AF1QipPo7SttppEfDIkQ7yDvmH95ejzVOohDR3peNPPZ=w408-h229-k-no" style="position: relative; top: -15px;left: 0px;width: 408px;height: 230px;">
-
-    </div>
-
-    <div id="pl-header-details">
-      <label class="section-hero-header-title">CNG Pump</label><br/>
-      <label class="section-hero-header-title">Ratting:4.2**</label>
-    </div>
-    <hr>
-
-    <div id="pl-full-details" class="pl-header-row">
-        14, Delhi - Jaipur Expy, LIG Colony, Sector 31, Gurugram, Haryana 122022
-    </div>
-
-    <div class="section-reviewchart">
-        
-    </div> 
-  </div> -->
-
+  <!-- Side Navigation section  -->
   <div ng-include="'sidenav.html'"></div>
-
-<div id="map"></div>
+  <!-- Google Map bindings -->
+  <div id="map"></div>
 
 </div>

@@ -8,6 +8,7 @@ function plantDirectionMap(destLat, destLng, srcLat, srcLng)
     center: {lat: srcLat, lng: srcLng}
   });
   directionsDisplay.setMap(map);
+  getPlaceDetails();
 
   calculateAndDisplayRoute(directionsService, directionsDisplay,destLat, destLng,srcLat, srcLng);
 }
